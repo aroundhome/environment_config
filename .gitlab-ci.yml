@@ -1,0 +1,17 @@
+image: ruby:2.4.1
+
+variables:
+  SSH_AUTH_SOCK: "/ssh-agent"
+
+before_script:
+  - mkdir -p /root/.ssh && ssh-keyscan -H codevault.io > /root/.ssh/known_hosts 2>/dev/null
+  - bundle config jobs 8
+  - bundle install --path=/tmp/bundler --quiet
+
+rspec:
+  script:
+    - bundle exec rspec
+
+rubocop:
+  script:
+    - bundle exec rubocop

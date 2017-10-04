@@ -1,0 +1,3 @@
+inherit_gem:
+  kp_cop:
+    - default.yml
