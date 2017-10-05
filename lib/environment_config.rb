@@ -4,8 +4,8 @@ require 'environment_config/builder'
 
 class EnvironmentConfig
   class << self
-    def load
-      builder = Builder.new
+    def load(**options)
+      builder = Builder.new(**options)
       yield builder
       builder.config
     end
@@ -27,15 +27,15 @@ class EnvironmentConfig
   def to_h
     # This method solely exists for purposes of "irb discoverability"
     raise NotImplementedError,
-          'Please choose between to_string_h and to_symbol_h, ' \
+          'Please choose between to_string_hash and to_symbol_hash, ' \
           'depending on the key type you want to get.'
   end
 
-  def to_string_h
+  def to_string_hash
     @store.dup
   end
 
-  def to_symbol_h
+  def to_symbol_hash
     @store.map { |k,v| [k.to_sym, v] }.to_h
   end
 

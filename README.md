@@ -36,10 +36,10 @@ instead of parsing to `0`).
 After building the configuration, your values will be available:
 
 * as methods on the config object
-* as hash with string keys using `to_string_h`
-* as hash with symbol keys using `to_symbol_h`
+* as hash with string keys using `to_string_hash`
+* as hash with symbol keys using `to_symbol_hash`
 
-All keys are lower cased, so `FOO_ARG` will become `config.foo_arg` or `config.to_string_h['foo']`.
+All keys are lower cased, so `FOO_ARG` will become `config.foo_arg` or `config.to_string_hash['foo']`.
 
 ### Integration with Rails
 
