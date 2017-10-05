@@ -39,15 +39,15 @@ class EnvironmentConfig
     @store.map { |k, v| [k.to_sym, v] }.to_h
   end
 
-  def fetch(key)
-    @store[key.to_s]
-  end
-
   def store(key, value)
     @store[key.to_s] = value
   end
 
   private
+
+  def fetch(key)
+    @store[key.to_s]
+  end
 
   def known_key?(key)
     @store.key? key.to_s
