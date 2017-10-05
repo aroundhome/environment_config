@@ -2,7 +2,7 @@
 
 class EnvironmentConfig
   class Builder
-    BOOLEAN_VALUES = ['true', 'false'].freeze
+    BOOLEAN_VALUES = %w[true false].freeze
 
     attr_reader :config
 
