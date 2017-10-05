@@ -14,6 +14,10 @@ class EnvironmentConfig
       store(key, from_env(key, *args).to_s)
     end
 
+    def symbol(key, *args)
+      store(key, from_env(key, *args).to_sym)
+    end
+
     def integer(key, *args)
       store(key, Integer(from_env(key, *args)))
     end

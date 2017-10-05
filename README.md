@@ -22,6 +22,7 @@ Albeit environment variables being string only, you can specify types when
 defining parameters:
 
 * `string`
+* `symbol`
 * `integer` (base 10 encoded)
 * `boolean` (only accepts `true` and `false`)
 * `string_list` (comma separated)
