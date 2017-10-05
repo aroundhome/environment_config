@@ -4,7 +4,7 @@ This gem provides a unified way to read configuration parameters
 from environment variables.
 
 
-## Defining a configuration
+## Usage
 
 You can load a configuration from the environment using a `load` block:
 
@@ -31,7 +31,7 @@ Type conversions try to be strict and will throw an error, if the conversion
 can't be performed safely (e.g. an integer receiving `abc` will raise an error
 instead of parsing to `0`).
 
-## Using a configuration
+### Accessing values
 
 After building the configuration, your values will be available:
 
@@ -40,6 +40,31 @@ After building the configuration, your values will be available:
 * as hash with symbol keys using `to_symbol_hash`
 
 All keys are lower cased, so `FOO_ARG` will become `config.foo_arg` or `config.to_string_hash['foo']`.
+
+### Avoiding prefix duplication
+
+For environment variables you will usually want to assign common prefixes, e.g.
+
+```bash
+export FOO_HOST=host
+export FOO_PASSWORD=password
+```
+
+Oftentimes you don't want to have those prefixes in your application config,
+so you can strip them using `strip_prefix`:
+
+```ruby
+# defining it
+foo_config = EnvironmentConfig.load(strip_prefix: 'FOO_') do |c|
+  c.string  'FOO_HOST', 'default_host'
+  c.string  'FOO_PASSWORD'
+  c.string  'OTHER_FOO_VALUE', 'test'
+end
+
+# using it
+foo_config.host # default_host
+foo_config.other_foo_value # test
+```
 
 ### Integration with Rails
 

@@ -6,7 +6,8 @@ class EnvironmentConfig
 
     attr_reader :config
 
-    def initialize
+    def initialize(strip_prefix: nil)
+      @strip_prefix = strip_prefix
       @config = EnvironmentConfig.new
     end
 
@@ -50,6 +51,9 @@ class EnvironmentConfig
     end
 
     def store(key, value)
+      if @strip_prefix && key.start_with?(@strip_prefix)
+        key = key[@strip_prefix.size..-1]
+      end
       config.store(key.downcase, value)
     end
   end
