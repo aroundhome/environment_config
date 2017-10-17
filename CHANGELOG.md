@@ -1,3 +1,8 @@
+## 1.1.0
+
+* Add `EnvironmentConfig.ensure`, which is a more expressive way to
+  check the presence of environment variables without using them
+
 ## 1.0.1
 
 * Make method private that should never have been public
