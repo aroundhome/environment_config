@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
+require 'environment_config/types'
+
 class EnvironmentConfig
   class Builder
-    BOOLEAN_VALUES = %w[true false].freeze
-
     attr_reader :config
 
     def initialize(strip_prefix: nil)
@@ -11,37 +11,31 @@ class EnvironmentConfig
       @config = EnvironmentConfig.new
     end
 
-    def string(key, *args)
-      store(key, from_env(key, *args).to_s)
-    end
-
-    def symbol(key, *args)
-      store(key, from_env(key, *args).to_sym)
-    end
-
-    def integer(key, *args)
-      store(key, Integer(from_env(key, *args)))
-    end
-
-    def boolean(key, *args)
-      value = from_env(key, *args).to_s
-      unless BOOLEAN_VALUES.include?(value)
-        raise ArgumentError,
-              "Environment variable #{key} could not be read as boolean. " \
-              "Expected: #{BOOLEAN_VALUES.join('/')} " \
-              "Got: #{value}"
+    def method_missing(method_name, *args)
+      if Types.known_type?(method_name)
+        type = method_name
+        key = args.shift
+        convert_and_store(type, key, *args)
+      else
+        super
       end
-
-      store(key, value == 'true')
     end
 
-    def string_list(key, *args)
-      value = from_env(key, *args)
-      value = value.split(',') unless value.is_a? Array
-      store(key, value)
+    def respond_to_missing?(method_name, *args)
+      Types.known_type?(method_name) || super
     end
 
     private
+
+    def convert_and_store(type, key, *args)
+      value = Types.convert(type, from_env(key, *args))
+      store(key, value)
+    rescue Types::TypeError => e
+      raise ArgumentError,
+            "Environment variable #{key} could not be read as #{type}. " \
+            "Expected: #{e.expected_message} " \
+            "Got: #{e.value}"
+    end
 
     def from_env(key, *args)
       ENV.fetch(key, *args)
