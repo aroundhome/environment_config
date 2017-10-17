@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'environment_config/typed_env'
 require 'environment_config/types'
 
 class EnvironmentConfig
@@ -28,15 +29,8 @@ class EnvironmentConfig
     private
 
     def convert_and_store(type, key, *args)
-      value = Types.convert(type, key, from_env(key, *args))
+      value = TypedEnv.fetch(type, key, *args)
       store(key, value)
-    end
-
-    def from_env(key, *args)
-      ENV.fetch(key, *args)
-    rescue KeyError => e
-      raise e,
-            "Expected environment variable #{key} to be set, but was missing."
     end
 
     def store(key, value)

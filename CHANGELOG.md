@@ -2,6 +2,8 @@
 
 * Add `EnvironmentConfig.ensure`, which is a more expressive way to
   check the presence of environment variables without using them
+* Add `EnvironmentConfig.fetch_*` methods that will fetch a single
+  environment variable expecting the given type (e.g. `fetch_string`).
 * Improve error readout for unparsable integer
 
 ## 1.0.1

@@ -1,8 +1,11 @@
 # frozen_string_literal: true
 
 require 'environment_config/builder'
+require 'environment_config/type_fetcher_methods'
 
 class EnvironmentConfig
+  include TypeFetcherMethods
+
   class << self
     # Accepts the same block as `load` does, but only validates
     # the presence and type of environment variables. Does not return
