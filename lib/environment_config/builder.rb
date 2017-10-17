@@ -28,13 +28,8 @@ class EnvironmentConfig
     private
 
     def convert_and_store(type, key, *args)
-      value = Types.convert(type, from_env(key, *args))
+      value = Types.convert(type, key, from_env(key, *args))
       store(key, value)
-    rescue Types::TypeError => e
-      raise ArgumentError,
-            "Environment variable #{key} could not be read as #{type}. " \
-            "Expected: #{e.expected_message} " \
-            "Got: #{e.value}"
     end
 
     def from_env(key, *args)

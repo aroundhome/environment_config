@@ -19,9 +19,14 @@ class EnvironmentConfig
     ].freeze
 
     class << self
-      def convert(type_name, value)
+      def convert(type_name, key, value)
         type = type_map.fetch(type_name.to_sym)
         type.convert(value)
+      rescue Types::TypeError => e
+        raise ArgumentError,
+              "Environment variable #{key} could not be read as #{type_name}." \
+              " Expected: #{e.expected_message}" \
+              " Got: #{e.value}"
       end
 
       def type_names

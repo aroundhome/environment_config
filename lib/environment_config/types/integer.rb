@@ -10,6 +10,8 @@ class EnvironmentConfig
 
         def convert(value)
           Integer(value)
+        rescue ArgumentError
+          raise TypeError.new('base 10 integer', value)
         end
       end
     end

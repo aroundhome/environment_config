@@ -2,6 +2,7 @@
 
 * Add `EnvironmentConfig.ensure`, which is a more expressive way to
   check the presence of environment variables without using them
+* Improve error readout for unparsable integer
 
 ## 1.0.1
 
