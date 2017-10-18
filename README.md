@@ -66,6 +66,29 @@ foo_config.host # default_host
 foo_config.other_foo_value # test
 ```
 
+### Accessing single values
+
+Sometimes you just want to fetch a few unrelated values from the environment,
+but not create a configuration object.
+
+There are fetch methods for all known types. For example:
+
+```ruby
+EnvironmentConfig.fetch_integer('MY_PORT')
+ => 42
+```
+
+### Expecting environment variables
+
+If you want to check the correct definition of environment variables that you do
+not consume yourself (e.g. you know that a gem will consume them), just use
+the `ensure` helper method:
+
+EnvironmentConfig.ensure do |c|
+  c.string  'MY_GEM_CONFIG_VALUE'
+  c.integer 'MY_GEM_OTHER_VALUE'
+end
+
 ### Integration with Rails
 
 One possible integration into a Rails application could look like this:
