@@ -84,10 +84,12 @@ If you want to check the correct definition of environment variables that you do
 not consume yourself (e.g. you know that a gem will consume them), just use
 the `ensure` helper method:
 
+```ruby
 EnvironmentConfig.ensure do |c|
   c.string  'MY_GEM_CONFIG_VALUE'
   c.integer 'MY_GEM_OTHER_VALUE'
 end
+```
 
 ### Integration with Rails
 
