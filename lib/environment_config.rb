@@ -30,6 +30,7 @@ class EnvironmentConfig
 
   def method_missing(method_name, *_arguments, &block)
     return fetch method_name if known_key?(method_name)
+
     super
   end
 

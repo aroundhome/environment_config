@@ -32,6 +32,7 @@ class EnvironmentConfig
       def type_of_fetch_method(method_name)
         match = /\Afetch_(.+)/.match(method_name)
         return nil unless match
+
         match[1]
       end
     end
