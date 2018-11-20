@@ -1,17 +1,27 @@
-image: ruby:2.4.1
+image: ruby:2.4.2
 
-variables:
-  SSH_AUTH_SOCK: "/ssh-agent"
+stages:
+  - test
+  - publish
 
 before_script:
-  - mkdir -p /root/.ssh && ssh-keyscan -H codevault.io > /root/.ssh/known_hosts 2>/dev/null
   - bundle config jobs 8
   - bundle install --path=/tmp/bundler --quiet
 
+rubocop:
+  stage: test
+  script:
+    - bundle exec rubocop
+
 rspec:
+  stage: test
   script:
     - bundle exec rspec
 
-rubocop:
+publish_gem:
+  stage: publish
   script:
-    - bundle exec rubocop
+    - gemboy publish
+  only:
+    - master
+  when: manual
