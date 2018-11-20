@@ -26,10 +26,14 @@ defining parameters:
 * `integer` (base 10 encoded)
 * `boolean` (only accepts `true` and `false`)
 * `string_list` (comma separated)
+* `json`
+* `yaml`
 
 Type conversions try to be strict and will throw an error, if the conversion
 can't be performed safely (e.g. an integer receiving `abc` will raise an error
 instead of parsing to `0`).
+
+Be mindful, that `json` and `yaml` allow you to pass rather complex configuration, but will not be able to validate the content beyond checking it is valid JSON/YAML.
 
 ### Accessing values
 
