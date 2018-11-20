@@ -1,3 +1,7 @@
+## 1.2.0
+
+* Add support for complex datatypes via `json` and `yaml` parsers
+
 ## 1.1.0
 
 * Add `EnvironmentConfig.ensure`, which is a more expressive way to

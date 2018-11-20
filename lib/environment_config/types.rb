@@ -2,9 +2,11 @@
 
 require 'environment_config/types/boolean'
 require 'environment_config/types/integer'
+require 'environment_config/types/json'
 require 'environment_config/types/string'
 require 'environment_config/types/string_list'
 require 'environment_config/types/symbol'
+require 'environment_config/types/yaml'
 
 require 'environment_config/types/type_error'
 
@@ -13,9 +15,11 @@ class EnvironmentConfig
     ALL = [
       ::EnvironmentConfig::Types::Boolean,
       ::EnvironmentConfig::Types::Integer,
+      ::EnvironmentConfig::Types::Json,
       ::EnvironmentConfig::Types::String,
       ::EnvironmentConfig::Types::StringList,
-      ::EnvironmentConfig::Types::Symbol
+      ::EnvironmentConfig::Types::Symbol,
+      ::EnvironmentConfig::Types::Yaml
     ].freeze
 
     class << self
