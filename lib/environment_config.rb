@@ -46,12 +46,12 @@ class EnvironmentConfig
   def store(key, value)
     @store[key.to_s] = value
 
-    define_corresponding_method(key, value)
+    define_accessor_method(key, value)
   end
 
   private
 
-  def define_corresponding_method(key, value)
+  def define_accessor_method(key, value)
     self.class.send :define_method, key do
       value
     end
