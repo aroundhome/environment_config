@@ -1,6 +1,7 @@
 ## 1.2.1
 
-* Switch from defining methods using `method_missing` to `define_method`
+* Switch from defining methods using `method_missing` to `define_method` 
+(to increase compatibility with gems that rely on `method_missing` on a global level)
 
 ## 1.2.0
 
