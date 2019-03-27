@@ -47,6 +47,9 @@ class EnvironmentConfig
     @store[key.to_s] = value
 
     define_accessor_method(key, value)
+    return unless [true, false].include? value
+
+    define_accessor_method("#{key}?", value)
   end
 
   private
