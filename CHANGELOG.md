@@ -1,5 +1,6 @@
 ## 1.3.0
 
+* Fix a bug where it was possible to overwrite values
 * Add a ?-version to retrieve boolean values
 
 ## 1.2.1
