@@ -47,13 +47,14 @@ class EnvironmentConfig
     @store[key.to_s] = value
 
     define_accessor_method(key, value)
+    return unless [true, false].include? value
+
+    define_accessor_method("#{key}?", value)
   end
 
   private
 
-  def define_accessor_method(key, value)
-    self.class.send :define_method, key do
-      value
-    end
+  def define_accessor_method(name, value)
+    define_singleton_method(name) { value }
   end
 end
