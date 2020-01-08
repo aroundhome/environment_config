@@ -1,3 +1,7 @@
+## 1.4.0
+
+* Allow passing Base64 encoded variables
+
 ## 1.3.0
 
 * Fix a bug where it was possible to overwrite values

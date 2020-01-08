@@ -2,6 +2,8 @@
 
 require 'environment_config/types'
 
+require 'base64'
+
 class EnvironmentConfig
   class TypedEnv
     class << self
@@ -11,8 +13,11 @@ class EnvironmentConfig
 
       private
 
-      def fetch_raw(key, *args)
-        ENV.fetch(key, *args)
+      def fetch_raw(key, *options, base64: false)
+        result = ENV.fetch(key, *options)
+        return Base64.decode64(result) if base64
+        
+        result
       rescue KeyError => e
         raise e,
               "Expected environment variable #{key} to be set, but was missing."
