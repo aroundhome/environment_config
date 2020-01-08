@@ -16,7 +16,7 @@ class EnvironmentConfig
       def fetch_raw(key, *options, base64: false)
         result = ENV.fetch(key, *options)
         return Base64.decode64(result) if base64
-        
+
         result
       rescue KeyError => e
         raise e,

@@ -58,7 +58,7 @@ RSpec.describe EnvironmentConfig::TypedEnv do
       it 'passes a decoded value to the type' do
         expect(EnvironmentConfig::Types)
           .to receive(:convert).with(type, key, clear_value)
-          
+
         subject
       end
     end
