@@ -60,4 +60,20 @@ RSpec.describe EnvironmentConfig do
       expect(other_config.boolean_value_false).to be true
     end
   end
+
+  context 'Base64 decoding' do
+    before do
+      ENV['TEST_ENV_VARIABLE'] = 'QSB0ZXN0IHN0cmluZyE='
+    end
+
+    let(:config) do
+      EnvironmentConfig.load(strip_prefix: 'TEST_ENV_') do |c|
+        c.string 'TEST_ENV_VARIABLE', base64: true
+      end
+    end
+
+    it 'decodes the variable' do
+      expect(config.variable).to eq 'A test string!'
+    end
+  end
 end

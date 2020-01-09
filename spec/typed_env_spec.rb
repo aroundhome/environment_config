@@ -41,5 +41,26 @@ RSpec.describe EnvironmentConfig::TypedEnv do
         it { is_expected.to eql default }
       end
     end
+
+    context 'when decoding Base64' do
+      subject { described_class.fetch(type, key, base64: true) }
+
+      let(:value) { Base64.encode64(clear_value) }
+      let(:clear_value) { 'a clear value' }
+
+      it { is_expected.to eql clear_value }
+
+      it 'does not pass the base64 argument to the ENV' do
+        expect(ENV).to receive(:fetch).with(key).and_call_original
+        subject
+      end
+
+      it 'passes a decoded value to the type' do
+        expect(EnvironmentConfig::Types)
+          .to receive(:convert).with(type, key, clear_value)
+
+        subject
+      end
+    end
   end
 end

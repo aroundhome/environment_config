@@ -35,6 +35,20 @@ instead of parsing to `0`).
 
 Be mindful, that `json` and `yaml` allow you to pass rather complex configuration, but will not be able to validate the content beyond checking it is valid JSON/YAML.
 
+### Unsupported characters
+
+In case you need to pass configuration with characters that could not safely be passed through
+environment variables directly, you can pass a Base64 encoded form of the parameters and
+tell `EnvironmentConfig` to decode the value prior usage. E.g.:
+
+```ruby
+EnvironmentConfig.load do |c|
+  c.string 'SOME_BYTES', base64: true
+end
+```
+
+This works regardless of the chosen type for the variable.
+
 ### Accessing values
 
 After building the configuration, your values will be available:
