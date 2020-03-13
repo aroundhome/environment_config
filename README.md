@@ -24,6 +24,7 @@ defining parameters:
 * `string`
 * `symbol`
 * `integer` (base 10 encoded)
+* `integer_list` (comma separated, base 10 encoded)
 * `boolean` (only accepts `true` and `false`)
 * `string_list` (comma separated)
 * `json`
