@@ -1,3 +1,7 @@
+## 1.5.0
+
+* Add support for a new datatype `integer_list`
+
 ## 1.4.0
 
 * Allow passing Base64 encoded variables
