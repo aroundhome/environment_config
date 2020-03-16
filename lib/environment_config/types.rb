@@ -2,6 +2,7 @@
 
 require 'environment_config/types/boolean'
 require 'environment_config/types/integer'
+require 'environment_config/types/integer_list'
 require 'environment_config/types/json'
 require 'environment_config/types/string'
 require 'environment_config/types/string_list'
@@ -15,6 +16,7 @@ class EnvironmentConfig
     ALL = [
       ::EnvironmentConfig::Types::Boolean,
       ::EnvironmentConfig::Types::Integer,
+      ::EnvironmentConfig::Types::IntegerList,
       ::EnvironmentConfig::Types::Json,
       ::EnvironmentConfig::Types::String,
       ::EnvironmentConfig::Types::StringList,
