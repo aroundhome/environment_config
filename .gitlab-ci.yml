@@ -17,11 +17,3 @@ rspec:
   stage: test
   script:
     - bundle exec rspec
-
-publish_gem:
-  stage: publish
-  script:
-    - gemboy publish
-  only:
-    - master
-  when: manual

@@ -34,9 +34,7 @@ class EnvironmentConfig
     end
 
     def store(key, value)
-      if @strip_prefix && key.start_with?(@strip_prefix)
-        key = key[@strip_prefix.size..-1]
-      end
+      key = key[@strip_prefix.size..-1] if @strip_prefix && key.start_with?(@strip_prefix)
       config.store(key.downcase, value)
     end
   end

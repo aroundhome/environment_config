@@ -8,11 +8,12 @@ require 'environment_config/version'
 Gem::Specification.new do |spec|
   spec.name          = 'environment_config'
   spec.version       = EnvironmentConfig::VERSION
-  spec.authors       = ['Jan Sandbrink']
-  spec.email         = ['jan.sandbrink@kaeuferportal.de']
+  spec.authors       = ['be Around GmbH']
+  spec.email         = ['oss@aroundhome.de']
+  spec.licenses      = ['MIT']
 
   spec.summary       = 'Gem to unify reading configuration from env variables.'
-  spec.homepage      = 'https://codevault.io/kaeuferportal/environment_config'
+  spec.homepage      = 'https://github.com/aroundhome/environment_config'
 
   spec.files         = `git ls-files -z`.split("\x0")
                                         .reject { |f| f.match(%r{^spec/}) }
@@ -20,9 +21,8 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
-  spec.add_development_dependency 'bundler', '~> 1.10'
-  spec.add_development_dependency 'gemboy'
-  spec.add_development_dependency 'kp_cop'
+  spec.add_development_dependency 'aroundhome_cops', '~> 2.0'
   spec.add_development_dependency 'pry'
   spec.add_development_dependency 'rspec', '~> 3.6'
+  spec.add_development_dependency 'rubocop', '0.86'
 end

@@ -14,9 +14,7 @@ class EnvironmentConfig
           # ensure compatibility when receiving correctly typed default value
           value = value.to_s
 
-          unless BOOLEAN_VALUES.include?(value)
-            raise TypeError.new(BOOLEAN_VALUES.join('/'), value)
-          end
+          raise TypeError.new(BOOLEAN_VALUES.join('/'), value) unless BOOLEAN_VALUES.include?(value)
 
           value == 'true'
         end
