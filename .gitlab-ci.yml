@@ -17,3 +17,18 @@ rspec:
   stage: test
   script:
     - bundle exec rspec
+
+publish_gem:
+  stage: publish
+  script:
+    - mkdir ~/.gem
+    - |
+      cat << EOF > ~/.gem/credentials
+      ---
+      :rubygems_api_key: ${RUBYGEMS_API_KEY}
+      EOF
+    - chmod 0600 ~/.gem/credentials
+    - gem build environment_config.gemspec
+    - gem push $(find `pwd` -name "environment_config-*.gem")
+  only:
+    - master
