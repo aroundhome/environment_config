@@ -21,7 +21,7 @@ rspec:
 publish_gem:
   stage: publish
   script:
-    - mkdir ~/.gem
+    - mkdir -p ~/.gem
     - |
       cat << EOF > ~/.gem/credentials
       ---
