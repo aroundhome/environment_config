@@ -40,7 +40,7 @@ class EnvironmentConfig
   end
 
   def to_symbol_hash
-    @store.map { |k, v| [k.to_sym, v] }.to_h
+    @store.transform_keys(&:to_sym)
   end
 
   def store(key, value)

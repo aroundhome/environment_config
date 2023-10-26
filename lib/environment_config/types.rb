@@ -30,9 +30,9 @@ class EnvironmentConfig
         type.convert(value)
       rescue Types::TypeError => e
         raise ArgumentError,
-              "Environment variable #{key} could not be read as #{type_name}." \
-              " Expected: #{e.expected_message}" \
-              " Got: #{e.value}"
+              "Environment variable #{key} could not be read as #{type_name}. " \
+              "Expected: #{e.expected_message} " \
+              "Got: #{e.value}"
       end
 
       def type_names
@@ -46,7 +46,7 @@ class EnvironmentConfig
       private
 
       def type_map
-        @type_map ||= ALL.map { |type| [type.name, type] }.to_h
+        @type_map ||= ALL.to_h { |type| [type.name, type] }
       end
     end
   end

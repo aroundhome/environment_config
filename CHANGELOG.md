@@ -1,3 +1,7 @@
+## 2.0.0
+
+* Breaking: Dropped support for Ruby versions below 3
+
 ## 1.5.0
 
 * Add support for a new datatype `integer_list`
