@@ -1,6 +1,7 @@
 ## 2.0.0
 
 * Breaking: Dropped support for Ruby versions below 3
+* Fix support for Ruby versions 3 and above in some cases (e.g. support for Base64 encoded environment variables)
 
 ## 1.5.0
 

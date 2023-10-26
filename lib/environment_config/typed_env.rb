@@ -7,8 +7,8 @@ require 'base64'
 class EnvironmentConfig
   class TypedEnv
     class << self
-      def fetch(type, key, *args)
-        Types.convert(type, key, fetch_raw(key, *args))
+      def fetch(type, key, *args, **opts)
+        Types.convert(type, key, fetch_raw(key, *args, **opts))
       end
 
       private
