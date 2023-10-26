@@ -3,7 +3,7 @@
 RSpec.describe EnvironmentConfig::Types::Json do
   describe '.convert' do
     it 'converts an empty string to nil' do
-      expect(described_class.convert('')).to eq(nil)
+      expect(described_class.convert('')).to be_nil
     end
 
     it 'converts a JSON array to an array' do

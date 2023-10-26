@@ -17,7 +17,7 @@ RSpec.describe EnvironmentConfig::TypedEnv do
     context 'when specifying a type' do
       let(:type) { 'integer' }
 
-      it { is_expected.to eql 42 }
+      it { is_expected.to be 42 }
     end
 
     context 'when the value is not set in the environment' do

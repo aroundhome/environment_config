@@ -12,11 +12,11 @@ class EnvironmentConfig
       @config = EnvironmentConfig.new
     end
 
-    def method_missing(method_name, *args)
+    def method_missing(method_name, *args, **opts)
       if Types.known_type?(method_name)
         type = method_name
         key = args.shift
-        convert_and_store(type, key, *args)
+        convert_and_store(type, key, *args, **opts)
       else
         super
       end
@@ -28,13 +28,13 @@ class EnvironmentConfig
 
     private
 
-    def convert_and_store(type, key, *args)
-      value = TypedEnv.fetch(type, key, *args)
+    def convert_and_store(type, key, *args, **opts)
+      value = TypedEnv.fetch(type, key, *args, **opts)
       store(key, value)
     end
 
     def store(key, value)
-      key = key[@strip_prefix.size..-1] if @strip_prefix && key.start_with?(@strip_prefix)
+      key = key[@strip_prefix.size..] if @strip_prefix && key.start_with?(@strip_prefix)
       config.store(key.downcase, value)
     end
   end
