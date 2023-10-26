@@ -1,7 +1,3 @@
 inherit_gem:
   aroundhome_cops:
     - default.yml
-
-# Temporarily disabled for upgrade
-RSpec:
-  Enabled: false

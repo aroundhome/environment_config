@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe EnvironmentConfig do
-  context 'only one configuration' do
+RSpec.describe 'EnvironmentConfig integration tests' do # rubocop:disable RSpec/DescribeClass
+  context 'with only one load block' do
     before do
       ENV['TEST_ENV_VARIABLE_S'] = '42'
       ENV['TEST_ENV_VARIABLE_I'] = '42'
@@ -19,11 +19,11 @@ RSpec.describe EnvironmentConfig do
     end
 
     it 'returns a integer' do
-      expect(config.env_variable_i).to eql 42
+      expect(config.env_variable_i).to be 42
     end
   end
 
-  context 'multiple configurations' do
+  context 'with multiple load blocks' do
     before do
       ENV['TEST_ENV_VARIABLE'] = '42'
       ENV['TEST_BOOLEAN_VALUE_FALSE'] = 'false'
@@ -44,7 +44,7 @@ RSpec.describe EnvironmentConfig do
     end
 
     it 'returns a integer from the first config' do
-      expect(config.env_variable).to eql 42
+      expect(config.env_variable).to be 42
     end
 
     it 'returns a boolean from the first config' do
@@ -61,7 +61,7 @@ RSpec.describe EnvironmentConfig do
     end
   end
 
-  context 'Base64 decoding' do
+  describe 'Base64 decoding' do
     before do
       ENV['TEST_ENV_VARIABLE'] = 'QSB0ZXN0IHN0cmluZyE='
     end

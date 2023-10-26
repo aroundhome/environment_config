@@ -17,7 +17,7 @@ RSpec.describe EnvironmentConfig do
   describe '.fetch_integer' do
     subject { described_class.fetch_integer(key) }
 
-    it { is_expected.to eql 42 }
+    it { is_expected.to be 42 }
   end
 
   context 'when two configurations have been loaded' do
@@ -26,8 +26,8 @@ RSpec.describe EnvironmentConfig do
       ENV['TEST_B'] = 'test_b'
     end
 
-    let!(:config_a) { EnvironmentConfig.load { |c| c.string 'TEST_A' } }
-    let!(:config_b) { EnvironmentConfig.load { |c| c.string 'TEST_B' } }
+    let!(:config_a) { described_class.load { |c| c.string 'TEST_A' } }
+    let!(:config_b) { described_class.load { |c| c.string 'TEST_B' } }
 
     it 'config A does not have an accessor for the value of config B' do
       expect(config_a).not_to respond_to(:b)
@@ -44,13 +44,16 @@ RSpec.describe EnvironmentConfig do
     end
 
     let!(:config) do
-      EnvironmentConfig.load(strip_prefix: 'TEST_') do |c|
+      described_class.load(strip_prefix: 'TEST_') do |c|
         c.boolean 'TEST_BOOLEAN_VALUE'
       end
     end
 
-    it 'creates a ?-version of the method for a boolean' do
+    it 'has the value available under the regular method name' do
       expect(config.boolean_value).to be true
+    end
+
+    it 'creates a ?-version of the method for a boolean' do
       expect(config.boolean_value?).to be true
     end
   end

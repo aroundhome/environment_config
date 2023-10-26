@@ -2,7 +2,7 @@
 
 RSpec.describe EnvironmentConfig::Types::IntegerList do
   describe '.convert' do
-    context 'valid values' do
+    context 'with valid values' do
       it 'converts an empty string to an empty array' do
         expect(described_class.convert('')).to eq []
       end
@@ -20,7 +20,7 @@ RSpec.describe EnvironmentConfig::Types::IntegerList do
       end
     end
 
-    context 'invalid values' do
+    context 'with invalid values' do
       it 'throws an Argument error when not supplying integers' do
         expect do
           described_class.convert('1,B,3')
