@@ -44,4 +44,4 @@ publish_gem:
     - gem build environment_config.gemspec
     - gem push $(find `pwd` -name "environment_config-*.gem")
   only:
-    - master
+    - main
