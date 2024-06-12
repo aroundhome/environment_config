@@ -23,6 +23,8 @@ Gem::Specification.new do |spec|
 
   spec.required_ruby_version = '~> 3.0'
 
+  spec.add_dependency 'base64', '~> 0.2.0'
+
   spec.add_development_dependency 'aroundhome_cops', '~> 5.0'
   spec.add_development_dependency 'pry'
   spec.add_development_dependency 'rspec', '~> 3.6'
