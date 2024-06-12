@@ -1,3 +1,7 @@
+## 2.0.1 (2024-06-12)
+
+- Use the new default branch (`main`, replacing `master`) in the publish job
+
 ## 2.0.0
 
 * Breaking: Dropped support for Ruby versions below 3
