@@ -1,6 +1,6 @@
 ## 2.0.1 (2024-06-12)
 
-- Use the new default branch (`main`, replacing `master`) in the publish job
+-  Add `base64` as a dependency, since it's being removed from the standard Ruby library
 
 ## 2.0.0
 
